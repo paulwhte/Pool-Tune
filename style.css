@@ -4,11 +4,24 @@
   background-color: rgb(201, 250, 254);
   width: 60%;
   padding-left: 2%;
+  padding-bottom: 1%;
+  
+}
+
+#nav-menu {
+  background-color: rgb(182, 182, 182);
+  width: 62%;
 }
 
 @media screen and (max-width: 800px) {
-  .left, .main, .right {
+  #nav-menu, .main {
     width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+
+@media screen and (max-height: 1200px) {
+  .main {
+    min-height: 95vh;
   }
 }
 
@@ -25,6 +38,12 @@
   margin-right: auto;
 }
 
+table {
+  overflow: scroll;
+  width: 95%;
+  font-size: 2em;
+}
+
 th {
   background-color: rgb(182, 182, 182);
   font-weight: bold;
@@ -34,8 +53,6 @@ tr {
   background-color: rgb(227, 250, 255);
 }
 
-label {
-  display: inline-block;
-  width: 150px;
-  text-align: right;
+html, body, .tab{
+  min-height: 100%;
 }

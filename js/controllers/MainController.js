@@ -1,7 +1,8 @@
 app.controller('MainController', ['$scope', function($scope) {
     //Initialize PoolHistory object
     $scope.poolHistory = new PoolHistory();
-    
+
+    //Initialize array to hold records from poolHistory
     $scope.levelsList = [];
 
     //Function for updating the table containing the most recent record
@@ -37,6 +38,7 @@ app.controller('MainController', ['$scope', function($scope) {
         $scope.updateHistoryTable();
         $scope.poolHistory.saveHistoryToStorage();
         $scope.clearInputs();
+        $scope.openHomePage();
     }
 
     //Clear inputs upon adding new record
@@ -49,9 +51,32 @@ app.controller('MainController', ['$scope', function($scope) {
         $scope.newsl = '';
     }
 
+    $scope.openHomePage = function() {
+        $("#tabs-1").show();
+        //$("#tabs-1").height(100);
+        $("#tabs-2").hide();
+        $("#tabs-3").hide();
+    }
+
+    $scope.openHistoryPage = function() {
+        $("#tabs-1").hide();
+        $("#tabs-2").show();
+        $("#tabs-3").hide();
+    }
+
+    $scope.openNewRecordPage = function() {
+        console.log("asdf");
+        $("#tabs-1").hide();
+        $("#tabs-2").hide();
+        $("#tabs-3").show();
+    }
+
     //Get data from localstorage
     $scope.poolHistory.retrieveHistoryFromStorage();
     //Show most recent record on load
     $scope.updateMostRecent();
     $scope.updateHistoryTable();
+
+    //Show the home page
+    $scope.openHomePage();
 }])

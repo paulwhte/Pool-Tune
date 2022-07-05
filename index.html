@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    
     <script src="js/app.js" defer></script>
     <script src="js/classes.js"></script>
     <script src="js/controllers/MainController.js" defer></script>
+
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
     <title>Pool Tune</title>
@@ -17,118 +20,129 @@
 
 
   <body ng-app="PoolTune">
-    <div ng-controller="MainController" class="main center-element">
-      <h1>Pool Tune</h1>
+    <div ng-controller="MainController">
+      <div class="main center-element">
+        <h1>Pool Tune</h1>
 
-      <div id="current-levels-page" class="tab">
-        <h3>Most Current Levels</h3> 
-        <!--Table displays the most recent record-->
-        <table class="pure-table pure-table-bordered" id="lastRecord">
-          <tr>
-            <th>Chem</th>
-            <th>Last</th>
-            <th>Acceptable</th>
-          </tr>
-
-          <tr id="fc">
-            <td>FC</td>
-            <td ng-bind="lastfc">last</td>
-            <td>2.0-6.0</td>
-          </tr>
-
-          <tr id="ph">
-            <td>pH</td>
-            <td ng-bind="lastph">last</td>
-            <td>7.2-8.0</td>
-          </tr>
-
-          <tr id="ca">
-            <td>CA</td>
-            <td  ng-bind="lastca">last</td>
-            <td>60-90</td>
-          </tr>
-
-          <tr id="ta">
-            <td>TA</td>
-            <td ng-bind="lastta">last</td>
-            <td>50-90</td>
-          </tr>
-
-          <tr id="ch">
-            <td>CH</td>
-            <td ng-bind="lastch">last</td>
-            <td>250-650</td>
-          </tr>
-
-          <tr id="sl">
-            <td>Salt</td>
-            <td ng-bind="lastsl">last</td>
-            <td>3200</td>
-          </tr>
-        </table>
-      </div>
-
-      <div id="history-page" class="tab">
-        <h3>History</h3>
-        <!--Table displays history of all snapshots submitted-->
-        <table class="pure-table pure-table-bordered">
-          <thead>
+        <div id="tabs-1" class="tab">
+          <h3>Most Current Levels</h3> 
+          <!--Table displays the most recent record-->
+          <table class="pure-table pure-table-bordered" id="lastRecord">
             <tr>
-              <th>FC</th><th>pH</th><th>CA</th><th>TA</th><th>CH</th><th>Salt</th><th>Date</th>
+              <th>Chem</th>
+              <th>Last</th>
+              <th>Acceptable</th>
             </tr>
-          </thead>
-        
-          <tbody ng-repeat="item in levelsList">
-            <tr>
-              <td> {{ item.freeChlorine }} </td>
-              <td> {{ item.pH }} </td>
-              <td> {{ item.cyanuricAcid }} </td>
-              <td> {{ item.totalAlkalinity }} </td>
-              <td> {{ item.calciumHardness }} </td>
-              <td> {{ item.saltLevel }} </td>
-              <td> {{ item.snapDate | date: "medium" }} </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
 
-      <div id="add-new-record-page" class="tab">
-        <h3>Log new levels</h3>
-        <!--Allows adding new records-->
-        <form class="pure-form pure-form-aligned">
-          <div class="pure-control-group">
-            <label>Free Chlorine: </label><input type="number" ng-model="newfc"><br>
-          </div>
-          <div class="pure-control-group">
-            <label>pH: </label><input type="number" ng-model="newph"><br>
-          </div>
-          <div class="pure-control-group">
-            <label>Cyanuric Acid: </label><input type="number" ng-model="newca"><br>
-          </div>
-          <div class="pure-control-group">
-            <label>Total Alkalinity: </label><input type="number" ng-model="newta"><br>
-          </div>
-          <div class="pure-control-group">
-            <label>Calcium Hardness: </label><input type="number" ng-model="newch"><br>
-          </div>
-          <div class="pure-control-group">
-            <label>Salt Level:</label><input type="number" ng-model="newsl"><br>
-          </div>
-          <div class="center-element pure-control-group">
-            <button ng-click="saveNewRecord()" class="pure-button pure-button-primary" id="submit-button">Record Levels</button>
-          </div>
-        </form>
+            <tr id="fc">
+              <td>FC</td>
+              <td ng-bind="lastfc">last</td>
+              <td>2.0-6.0</td>
+            </tr>
+
+            <tr id="ph">
+              <td>pH</td>
+              <td ng-bind="lastph">last</td>
+              <td>7.2-8.0</td>
+            </tr>
+
+            <tr id="ca">
+              <td>CA</td>
+              <td  ng-bind="lastca">last</td>
+              <td>60-90</td>
+            </tr>
+
+            <tr id="ta">
+              <td>TA</td>
+              <td ng-bind="lastta">last</td>
+              <td>50-90</td>
+            </tr>
+
+            <tr id="ch">
+              <td>CH</td>
+              <td ng-bind="lastch">last</td>
+              <td>250-650</td>
+            </tr>
+
+            <tr id="sl">
+              <td>Salt</td>
+              <td ng-bind="lastsl">last</td>
+              <td>3200</td>
+            </tr>
+          </table>
+        </div>
+
+        <div id="tabs-2" class="tab">
+          <h3>History</h3>
+          <!--Table displays history of all snapshots submitted-->
+          <table class="pure-table pure-table-bordered">
+            <thead>
+              <tr>
+                <th>FC</th><th>pH</th><th>CA</th><th>TA</th><th>CH</th><th>Salt</th><th>Date</th>
+              </tr>
+            </thead>
+          
+            <tbody ng-repeat="item in levelsList">
+              <tr>
+                <td> {{ item.freeChlorine }} </td>
+                <td> {{ item.pH }} </td>
+                <td> {{ item.cyanuricAcid }} </td>
+                <td> {{ item.totalAlkalinity }} </td>
+                <td> {{ item.calciumHardness }} </td>
+                <td> {{ item.saltLevel }} </td>
+                <td> {{ item.snapDate | date: "medium" }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="tabs-3" class="tab">
+          <h3>Log new levels</h3>
+          <!--Allows adding new records-->
+          <form class="pure-form pure-form-aligned">
+            <div class="pure-control-group">
+              <label>Free Chlorine: </label><input type="number" ng-model="newfc"><br>
+            </div>
+            <div class="pure-control-group">
+              <label>pH: </label><input type="number" ng-model="newph"><br>
+            </div>
+            <div class="pure-control-group">
+              <label>Cyanuric Acid: </label><input type="number" ng-model="newca"><br>
+            </div>
+            <div class="pure-control-group">
+              <label>Total Alkalinity: </label><input type="number" ng-model="newta"><br>
+            </div>
+            <div class="pure-control-group">
+              <label>Calcium Hardness: </label><input type="number" ng-model="newch"><br>
+            </div>
+            <div class="pure-control-group">
+              <label>Salt Level:</label><input type="number" ng-model="newsl"><br>
+            </div>
+            <div class="center-element pure-control-group">
+              <button ng-click="saveNewRecord()" class="pure-button pure-button-primary" id="submit-button">Record Levels</button>
+            </div>
+          </form>
+        </div>
+      </div> <!--End class="main center-element"-->
+    
+      <div id="nav-menu" class="center-element pure-menu pure-menu-horizontal">
+          <ul class="pure-menu-list">
+            <li class="pure-menu-item">
+              <a href ng-click="openHomePage()" class="pure-menu-link">Home</a>
+            </li>
+            <li class="pure-menu-item">
+              <a href ng-click="openHistoryPage()" class="pure-menu-link">History</a>
+            </li>
+            <li class="pure-menu-item">
+              <a href ng-click="openNewRecordPage()" class="pure-menu-link">Record Levels</a>
+            </li>
+            <li class="pure-menu-item">
+              <a href class="pure-menu-link">Toggle Mode</a>
+            </li>
+          </ul>
       </div>
       
-
-
     </div> <!--End ng-controller="MainController" -->
   </body> <!-- End ng-app="PoolTune" -->
 
-    <script type="text/javascript">
-      //Last record of levels should display automatically at open
-      $(document).ready(function() {
-
-      });
-    </script>
 </html>
