@@ -1,11 +1,7 @@
 app.controller('MainController', ['$scope', function($scope) {
     //Initialize PoolHistory object
     $scope.poolHistory = new PoolHistory();
-    //Fake test snapshot
-    //let fakeRecord = new Snapshot(2.8, 7.4, 70, 110, 250, 3000);
-    //$scope.poolHistory.addRecord(fakeRecord);
-
-    //Fake placeholder list, replace with initial retrieval
+    
     $scope.levelsList = [];
 
     //Function for updating the table containing the most recent record
