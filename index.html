@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/app.js" defer></script>
+    <script src="js/classes.js"></script>
+    <script src="js/controllers/MainController.js" defer></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <title>Pool Tune</title>
+  </head>
+
+
+  <body ng-app="PoolTune">
+    <div ng-controller="MainController">
+      <h1>Pool Tune</h1>
+
+
+      <h3>Most Current Levels</h3> 
+      <!--Table displays the most recent record-->
+      <table id="lastRecord">
+        <tr>
+          <th>Chem</th>
+          <th>Last</th>
+          <th>Acceptable</th>
+        </tr>
+
+        <tr id="fc">
+          <td>FC</td>
+          <td ng-bind="lastfc">last</td>
+          <td>2.0-6.0</td>
+        </tr>
+
+        <tr id="ph">
+          <td>pH</td>
+          <td ng-bind="lastph">last</td>
+          <td>7.2-8.0</td>
+        </tr>
+
+        <tr id="ca">
+          <td>CA</td>
+          <td  ng-bind="lastca">last</td>
+          <td>60-90</td>
+        </tr>
+
+        <tr id="ta">
+          <td>TA</td>
+          <td ng-bind="lastta">last</td>
+          <td>50-90</td>
+        </tr>
+
+        <tr id="ch">
+          <td>CH</td>
+          <td ng-bind="lastch">last</td>
+          <td>250-650</td>
+        </tr>
+
+        <tr id="sl">
+          <td>Salt</td>
+          <td ng-bind="lastsl">last</td>
+          <td>3200</td>
+        </tr>
+      </table>
+
+
+      <h3>History</h3>
+      <!--Table displays history of all snapshots submitted-->
+      <table>
+        <thead>
+          <tr>
+            <th>FC</th><th>pH</th><th>CA</th><th>TA</th><th>CH</th><th>Salt</th><th>Date</th>
+          </tr>
+        </thead>
+      
+        <tbody ng-repeat="item in levelsList">
+          <tr>
+            <td> {{ item.freeChlorine }} </td>
+            <td> {{ item.pH }} </td>
+            <td> {{ item.cyanuricAcid }} </td>
+            <td> {{ item.totalAlkalinity }} </td>
+            <td> {{ item.calciumHardness }} </td>
+            <td> {{ item.saltLevel }} </td>
+            <td> {{ item.snapDate | date: "medium" }} </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <h3>Log new levels</h3>
+      <label>Free Chlorine: </label><input type="number" ng-model="newfc"><br>
+      <label>pH: </label><input type="number" ng-model="newph"><br>
+      <label>Cyanuric Acid: </label><input type="number" ng-model="newca"><br>
+      <label>Total Alkalinity: </label><input type="number" ng-model="newta"><br>
+      <label>Calcium Hardness: </label><input type="number" ng-model="newch"><br>
+      <label>Salt Level:</label><input type="number" ng-model="newsl"><br>
+      <button ng-click="saveNewRecord()">Record Levels</button>
+
+
+    </div> <!--End ng-controller="MainController" -->
+  </body> <!-- End ng-app="PoolTune" -->
+
+    <script type="text/javascript">
+      //Last record of levels should display automatically at open
+      $(document).ready(function() {
+
+      });
+    </script>
+</html>
